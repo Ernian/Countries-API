@@ -12,12 +12,9 @@ module.exports = {
         'very-dark-blue-lm': '#111517',
         'dark-gray': '#858585',
         'very-light-gray': '#f2f2f2',
-        'wite': '#fff',
       }
     },
     screens: {
-      // xl: '1440px',
-      // sm: '375px'
     }
   },
   plugins: [],
