@@ -1,5 +1,5 @@
 import { useAppContext } from '../../hooks/useAppContext'
-import { SunIcon } from '../../public/svg'
+import { SunIcon, MoonIcon } from '../../public/svg'
 
 export default function Header() {
   const context = useAppContext()
@@ -10,17 +10,27 @@ export default function Header() {
       className={`
       ${context?.isDark && 'bg-dark-blue'} ||
       ${!context?.isDark && 'bg-slate-100'}
-      flex justify-between px-5 py-3`
+      flex justify-between items-center px-5 py-3`
       }>
-      <div>
-        <h1>Where in the world?</h1>
+      <div
+        className={`
+         ${context?.isDark && 'text-very-light-gray'} ||
+         ${!context?.isDark && 'text-very-dark-blue-lm'}
+         text-2xl`
+        }>
+        Where in the world?
       </div>
       <div
-        className='hover:cursor-pointer'
+        className={`
+        ${context?.isDark && 'text-very-light-gray'} ||
+        ${!context?.isDark && 'text-very-dark-blue-lm'}
+        text-lg flex items-center hover:cursor-pointer`}
         onClick={changeColorTheme}
       >
-        <SunIcon />
-        <span>{context?.isDark ? 'Light Mode' : 'Dark Mode'}</span>
+        {context?.isDark ? <SunIcon /> : <MoonIcon />}
+        <span className='inline-block ml-3'>
+          {context?.isDark ? 'Light Mode' : 'Dark Mode'}
+        </span>
       </div>
     </header>
   )
