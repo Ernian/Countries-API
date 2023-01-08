@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Layout from '../components/layout'
 
 export default function Home() {
   return (
@@ -10,9 +9,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <h1>happy codding</h1>
-      </Layout>
+      <h1 className='text-5xl text-center font-extrabold text-very-light-gray'>happy codding</h1>
     </>
   )
 }
