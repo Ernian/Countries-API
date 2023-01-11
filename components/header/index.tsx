@@ -9,20 +9,20 @@ export default function Header() {
                          ${!context?.isDark && 'bg-slate-100 text-very-dark-blue-lm'}`
 
   return (
-    <header
-      className={`${bgTextClasses} flex justify-between items-center px-5 py-3`}
-    >
-      <div className='text-2xl'>
-        Where in the world?
-      </div>
-      <div
-        className='text-lg flex items-center hover:cursor-pointer'
-        onClick={changeColorTheme}
-      >
-        {context?.isDark ? <SunIcon /> : <MoonIcon />}
-        <span className='inline-block ml-3'>
-          {context?.isDark ? 'Light Mode' : 'Dark Mode'}
-        </span>
+    <header className={`${bgTextClasses} px-5 py-3`}>
+      <div className='flex justify-between items-center max-w-7xl mx-auto'>
+        <div className='text-2xl'>
+          Where in the world?
+        </div>
+        <div
+          className='text-lg flex items-center hover:cursor-pointer'
+          onClick={changeColorTheme}
+        >
+          {context?.isDark ? <SunIcon /> : <MoonIcon />}
+          <span className='inline-block ml-3'>
+            {context?.isDark ? 'Light Mode' : 'Dark Mode'}
+          </span>
+        </div>
       </div>
     </header>
   )
