@@ -4,8 +4,8 @@ import { useAppContext } from '../../hooks/useAppContext'
 
 export default function CountryCard({ country }: { country: ICountryInfo }) {
   const context = useAppContext()
-  const bgTextClasses = `${context?.isDark && 'bg-dark-blue text-very-light-gray'} ||
-                         ${!context?.isDark && 'bg-slate-100 text-very-dark-blue-lm'}`
+  const bgTextClasses = context?.isDark ? 'bg-dark-blue text-very-light-gray'
+    : 'bg-slate-100 text-very-dark-blue-lm'
 
   return (
     <section className={`${bgTextClasses} m-3 w-72 flex flex-col 
