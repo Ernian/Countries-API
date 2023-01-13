@@ -1,22 +1,44 @@
 import { useAppContext } from '../hooks/useAppContext'
 import SearchPanel from '../components/searchPanel'
 import CountryCard from '../components/countryCard'
-import { ICountryInfo } from '../types'
+import { ICountryInfo, REGIONS } from '../types'
 
 export default function Home({ countries }: { countries: ICountryInfo[] }) {
   const context = useAppContext()
-  const bgTextClasses = `${context?.isDark && 'bg-very-dark-blue-dm text-very-light-gray'} ||
-                         ${!context?.isDark && 'bg-slate-200 text-very-dark-blue-lm'}`
-  const countryCardList = countries.map(country => <CountryCard country={country} key={country.name?.official} />)
+  const bgTextClasses = context?.isDark ?
+    'bg-very-dark-blue-dm text-very-light-gray' :
+    'bg-slate-200 text-very-dark-blue-lm'
+
+  const searchQuery = context?.searchQuery || ''
+
+  const countryCardList = countries.reduce((countryList, country) => {
+    if (searchQuery) {
+      const searchFlag = country.name?.official.toLowerCase().includes(searchQuery.toLowerCase())
+      const filterFlag = context?.region === REGIONS.ALL || country.region === context?.region
+
+      if (searchFlag && filterFlag) {
+        countryList.push(<CountryCard country={country} key={country.name?.official} />)
+      }
+      return countryList
+    } else {
+      if (context?.region === REGIONS.ALL || country.region === context?.region) {
+        countryList.push(<CountryCard country={country} key={country.name?.official} />)
+      }
+      return countryList
+    }
+  }, [] as JSX.Element[])
 
   return (
     <main className={`${bgTextClasses} grow overflow-y-auto`}>
       <SearchPanel />
-      <section
-        className='flex flex-wrap justify-center max-w-7xl mx-auto'
-      >
+      <section className='flex flex-wrap justify-center max-w-7xl mx-auto'>
         {countryCardList}
       </section>
+      {!countryCardList.length &&
+        <h1 className={`text-5xl text-center absolute left-1/2 top-1/2 
+                        translate-x-[-50%] translate-y-[-50%]`}>
+          Country not found
+        </h1>}
     </main>
   )
 }

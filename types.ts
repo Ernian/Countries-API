@@ -1,8 +1,20 @@
-export type AppContextType = IColorTheme | null
+export type AppContextType = IContext | null
 
-export interface IColorTheme {
+export interface IContext {
   isDark: boolean,
-  setIsDark: (isDark: boolean) => void
+  setIsDark: (isDark: boolean) => void,
+  region: REGIONS,
+  setRegion: (region: REGIONS) => void,
+  searchQuery: string,
+  setSearchQuery: (searchQuery: string) => void,
+}
+export enum REGIONS {
+  ALL = 'All',
+  AFR = 'Africa',
+  AMR = 'Americas',
+  ASI = 'Asia',
+  EUR = 'Europe',
+  OCE = 'Oceania'
 }
 
 export interface ICountryInfo {
@@ -26,6 +38,6 @@ export interface ICountryInfo {
     official: string
   } | null,
   population: number | null,
-  region: string | null,
+  region: REGIONS | null,
   subregion: string | null,
 }
