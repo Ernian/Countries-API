@@ -9,13 +9,14 @@ export default function Header() {
     'bg-slate-100 text-very-dark-blue-lm'
 
   return (
-    <header className={`${bgTextClasses} pl-5 pr-9 py-3 `}>
+    <header className={`${bgTextClasses} p-3 sm:pl-5 sm:pr-9`}>
       <div className='flex justify-between items-center max-w-7xl mx-auto'>
-        <div className='text-2xl'>
+        <div className='text-base sm:text-2xl'>
           Where in the world?
         </div>
         <div
-          className='text-lg flex items-center hover:cursor-pointer hover:font-semibold'
+          className={`text-sm sm:text-lg flex items-center
+          hover:cursor-pointer hover:font-semibold`}
           onClick={changeColorTheme}
         >
           {context?.isDark ? <SunIcon /> : <MoonIcon />}
