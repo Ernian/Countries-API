@@ -35,7 +35,7 @@ export default function Home({ countries }: { countries: ICountryInfo[] }) {
         {countryCardList}
       </section>
       {!countryCardList.length &&
-        <h1 className={`text-5xl text-center absolute left-1/2 top-1/2 
+        <h1 className={`w-full text-3xl md:text-5xl text-center absolute left-1/2 top-1/2 
                         translate-x-[-50%] translate-y-[-50%]`}>
           Country not found
         </h1>}

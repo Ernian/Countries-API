@@ -8,7 +8,7 @@ export default function CountryCard({ country }: { country: ICountryInfo }) {
     : 'bg-slate-100 text-very-dark-blue-lm'
 
   return (
-    <section className={`${bgTextClasses} m-3 w-72 flex flex-col 
+    <section className={`${bgTextClasses} m-3 w-2/3 sm:w-2/5 md:w-72 flex flex-col 
     justify-between items-center rounded-lg overflow-hidden`}>
       {(country.flags && country.name) &&
         <div className='w-full h-40 relative'>
