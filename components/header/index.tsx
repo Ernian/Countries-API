@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useAppContext } from '../../hooks/useAppContext'
 import { SunIcon, MoonIcon } from '../../public/svg'
 
@@ -12,7 +13,7 @@ export default function Header() {
     <header className={`${bgTextClasses} p-3 sm:pl-5 sm:pr-9`}>
       <div className='flex justify-between items-center max-w-7xl mx-auto'>
         <div className='text-base sm:text-2xl'>
-          Where in the world?
+          <Link href='/' className='hover:cursor-pointer'>Where in the world?</Link>
         </div>
         <div
           className={`text-sm sm:text-lg flex items-center

@@ -17,12 +17,18 @@ export enum REGIONS {
   OCE = 'Oceania'
 }
 
+export interface IBorderCountry {
+  name: string,
+  ccn3: string,
+}
+
 export interface ICountryInfo {
-  border: string[] | null,
-  capital: [string] | null,
+  borders: string[] | null,
+  borderCountries: IBorderCountry[],
+  capital: [string] | string,
   continents: [string] | null,
   currencies: {
-    ANG: {
+    [key: string]: {
       name: string,
       symbol: string
     }
@@ -34,10 +40,17 @@ export interface ICountryInfo {
   languages: object | null,
   name: {
     common: string,
-    nativeName: object,
+    nativeName: {
+      [key: string]: {
+        common: string,
+        official: string
+      }
+    },
     official: string
   } | null,
   population: number | null,
   region: REGIONS | null,
   subregion: string | null,
+  tld: string[],
+  ccn3: string,
 }

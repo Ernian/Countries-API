@@ -12,20 +12,16 @@ export default function Home({ countries }: { countries: ICountryInfo[] }) {
   const searchQuery = context?.searchQuery || ''
 
   const countryCardList = countries.reduce((countryList, country) => {
+    const filterFlag = context?.region === REGIONS.ALL || country.region === context?.region
     if (searchQuery) {
       const searchFlag = country.name?.official.toLowerCase().includes(searchQuery.toLowerCase())
-      const filterFlag = context?.region === REGIONS.ALL || country.region === context?.region
-
       if (searchFlag && filterFlag) {
         countryList.push(<CountryCard country={country} key={country.name?.official} />)
       }
-      return countryList
-    } else {
-      if (context?.region === REGIONS.ALL || country.region === context?.region) {
-        countryList.push(<CountryCard country={country} key={country.name?.official} />)
-      }
-      return countryList
+    } else if (filterFlag) {
+      countryList.push(<CountryCard country={country} key={country.name?.official} />)
     }
+    return countryList
   }, [] as JSX.Element[])
 
   return (
@@ -48,28 +44,20 @@ export async function getStaticProps() {
   const data = await response.json()
   const countries = data.map((country: any) => {
     const {
-      borders = null,
-      capital = null,
-      continents = null,
-      currencies = null,
+      capital = 'No information',
       flags = null,
-      languages = null,
       name = null,
       population = null,
       region = null,
-      subregion = null,
+      ccn3 = null,
     } = country
     return {
       capital,
-      continents,
-      currencies,
       flags,
-      languages,
       name,
       population,
       region,
-      subregion,
-      borders
+      ccn3,
     }
   })
   return { props: { countries } }
