@@ -4,13 +4,16 @@ import BorderCountryLink from '../components/borderCountryLink'
 import { useAppContext } from '../hooks/useAppContext'
 import { ICountryInfo } from '../types'
 
-export default function CountryPage({ country }: { country: ICountryInfo }) {
+export default function CountryPage({ country }: { country: ICountryInfo | null }) {
   const context = useAppContext()
+
+  if (!country) return null
+
   const bgTextClasses = context?.isDark ?
     'bg-very-dark-blue-dm text-very-light-gray' :
     'bg-slate-200 text-very-dark-blue-lm'
 
-  const [nativeName] = Object.values(country.name?.nativeName || {})
+  const [nativeName] = Object.values(country?.name?.nativeName || {})
   const [currencies] = Object.values(country.currencies || {})
   const languages = Object.values(country.languages || {})
 
@@ -27,13 +30,13 @@ export default function CountryPage({ country }: { country: ICountryInfo }) {
             className='p-5'
           />
           <div className='w-5/6 lg:w-auto'>
-            <h1 className='text-4xl'>{country.name?.official}</h1>
+            <h1 className='text-4xl'>{country?.name?.official}</h1>
             <div>
               <p className='mt-1'>
                 <span className='font-semibold text-base'>
                   Native Name :
                 </span>
-                &nbsp; {nativeName.common}
+                &nbsp; {nativeName?.common}
               </p>
               <p className='mt-1'>
                 <span className='font-semibold text-base'>
@@ -108,6 +111,15 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: { params: { country: string } }) {
   const { country } = context.params
+
+  if (country === 'undefined' || country === '500') {
+    return {
+      props: {
+        country: null
+      }
+    }
+  }
+
   const response = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
   const data: ICountryInfo[] = await response.json()
 
