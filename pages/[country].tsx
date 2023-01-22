@@ -112,7 +112,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: { params: { country: string } }) {
   const { country } = context.params
 
-  if (country === 'undefined') {
+  if (country === 'undefined' || country === '500') {
     return {
       props: {
         country: null
