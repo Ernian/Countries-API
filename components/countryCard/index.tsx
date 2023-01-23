@@ -31,7 +31,7 @@ export default function CountryCard({ country }: { country: ICountryInfo }) {
         </p>
       </div>
       <Link
-        href={`/${country.ccn3}`}
+        href={`/country/${country.ccn3}`}
         className='block absolute inset-0'
       />
     </section>

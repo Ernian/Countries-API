@@ -1,17 +1,17 @@
 import Image from 'next/image'
-import BackButton from '../components/backButton'
-import BorderCountryLink from '../components/borderCountryLink'
-import { useAppContext } from '../hooks/useAppContext'
-import { ICountryInfo } from '../types'
+import BackButton from '../../components/backButton'
+import BorderCountryLink from '../../components/borderCountryLink'
+import { useAppContext } from '../../hooks/useAppContext'
+import { ICountryInfo } from '../../types'
 
 export default function CountryPage({ country }: { country: ICountryInfo | null }) {
   const context = useAppContext()
 
-  if (!country) return null
-
   const bgTextClasses = context?.isDark ?
     'bg-very-dark-blue-dm text-very-light-gray' :
     'bg-slate-200 text-very-dark-blue-lm'
+
+  if (!country) return <main className={`${bgTextClasses} grow text-3xl p-5`}>Server error</main>
 
   const [nativeName] = Object.values(country?.name?.nativeName || {})
   const [currencies] = Object.values(country.currencies || {})
@@ -81,14 +81,12 @@ export default function CountryPage({ country }: { country: ICountryInfo | null 
                 &nbsp; {languages.join(', ')}
               </p>
             </div>
-            <div className='mt-5'>
+            {country.borderCountries.length ? (<div className='mt-5'>
               <span className='font-semibold text-base'>
                 Border Countries :
               </span>
-              &nbsp;{country.borderCountries.length ?
-                country.borderCountries.map(c => <BorderCountryLink country={c} key={c.ccn3} />)
-                : null}
-            </div>
+              &nbsp;{country.borderCountries.map(c => <BorderCountryLink country={c} key={c.ccn3} />)}
+            </div>) : null}
           </div>
         </section>
       </div>
@@ -98,7 +96,7 @@ export default function CountryPage({ country }: { country: ICountryInfo | null 
 
 export async function getStaticPaths() {
   const response = await fetch('https://restcountries.com/v3.1/all')
-  const data = await response.json()
+  const data: ICountryInfo[] = await response.json()
 
   const paths = data.map((country: ICountryInfo) => ({
     params: {
@@ -112,7 +110,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: { params: { country: string } }) {
   const { country } = context.params
 
-  if (country === 'undefined' || country === '500') {
+  if (country === 'undefined') {
     return {
       props: {
         country: null
