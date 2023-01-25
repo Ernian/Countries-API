@@ -6,8 +6,8 @@ import { ICountryInfo, REGIONS } from '../types'
 export default function Home({ countries }: { countries: ICountryInfo[] }) {
   const context = useAppContext()
   const bgTextClasses = context?.isDark ?
-    'bg-very-dark-blue-dm text-very-light-gray' :
-    'bg-slate-200 text-very-dark-blue-lm'
+    'bg-very-dark-blue-dm text-very-light-gray scrollbar-dm' :
+    'bg-slate-200 text-very-dark-blue-lm scrollbar-lm'
 
   const searchQuery = context?.searchQuery || ''
 
@@ -25,7 +25,7 @@ export default function Home({ countries }: { countries: ICountryInfo[] }) {
   }, [] as JSX.Element[])
 
   return (
-    <main className={`${bgTextClasses} grow overflow-y-auto`}>
+    <main className={`${bgTextClasses} grow overflow-y-auto scrollbar`}>
       <SearchPanel />
       <section className='flex flex-wrap justify-center max-w-7xl mx-auto'>
         {countryCardList}

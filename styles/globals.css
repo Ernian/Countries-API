@@ -16,3 +16,21 @@
 body {
   font-family: 'Nunito Sans', sans-serif;
 }
+
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-dm::-webkit-scrollbar-thumb {
+  background-color: rgb(3 105 161);
+  border-radius: 5px;
+}
+
+.scrollbar-lm::-webkit-scrollbar-thumb {
+  background-color: rgb(156 163 175);
+  border-radius: 5px;
+}
