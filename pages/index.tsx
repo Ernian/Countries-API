@@ -41,13 +41,13 @@ export default function Home({ countries }: { countries: ICountryInfo[] }) {
 
 export async function getStaticProps() {
   const response = await fetch('https://restcountries.com/v3.1/all')
-  const data = await response.json()
-  const countries = data.map((country: any) => {
+  const data: ICountryInfo[] = await response.json()
+  const countries = data.map((country) => {
     const {
       capital = 'No information',
       flags = null,
       name = null,
-      population = null,
+      population = 0,
       region = null,
       ccn3 = null,
     } = country
@@ -55,7 +55,7 @@ export async function getStaticProps() {
       capital,
       flags,
       name,
-      population,
+      population: population.toLocaleString('ru'),
       region,
       ccn3,
     }

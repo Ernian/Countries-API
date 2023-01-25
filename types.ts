@@ -48,7 +48,7 @@ export interface ICountryInfo {
     },
     official: string
   } | null,
-  population: number | null,
+  population: number,
   region: REGIONS | null,
   subregion: string | null,
   tld: string[],
