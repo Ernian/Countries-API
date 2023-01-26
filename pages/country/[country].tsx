@@ -121,7 +121,7 @@ export async function getStaticProps(context: { params: { country: string } }) {
   const response = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
   if (!response.ok) return { notFound: true }
   const data: ICountryInfo[] = await response.json()
-
+  if (!data) return { notFound: true }
   const [{
     borders = null,
     borderCountries = [],
