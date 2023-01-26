@@ -23,7 +23,7 @@ export default function CountryCard({ country }: { country: ICountryInfo }) {
       }
       <div className='w-full p-4 grow-[5]' >
         <p className='font-extrabold text-xl'>{country.name?.common}</p>
-        <p><span className='font-semibold text-base'>Population : </span>{country.population}</p>
+        <p><span className='font-semibold'>Population : </span>{country.population}</p>
         <p><span className='font-semibold'>Region : </span> {country.region}</p>
         <p>
           <span className='font-semibold'>Capital : </span>
