@@ -4,14 +4,12 @@ import BorderCountryLink from '../../components/borderCountryLink'
 import { useAppContext } from '../../hooks/useAppContext'
 import { ICountryInfo } from '../../types'
 
-export default function CountryPage({ country }: { country: ICountryInfo | null }) {
+export default function CountryPage({ country }: { country: ICountryInfo }) {
   const context = useAppContext()
 
   const bgTextClasses = context?.isDark ?
     'bg-very-dark-blue-dm text-very-light-gray' :
     'bg-slate-200 text-very-dark-blue-lm'
-
-  if (!country) return <main className={`${bgTextClasses} grow text-3xl p-5`}>Server error</main>
 
   const [nativeName] = Object.values(country?.name?.nativeName || {})
   const [currencies] = Object.values(country.currencies || {})
@@ -104,24 +102,15 @@ export async function getStaticPaths() {
     }
   }))
 
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps(context: { params: { country: string } }) {
   const { country } = context.params
 
-  if (country === 'undefined') {
-    return {
-      props: {
-        country: null
-      }
-    }
-  }
-
   const response = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
-  if (!response.ok) return { notFound: true }
   const data: ICountryInfo[] = await response.json()
-  if (!data) return { notFound: true }
+  if (!response.ok) return { notFound: true }
   const [{
     borders = null,
     borderCountries = [],
