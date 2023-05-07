@@ -3,7 +3,7 @@ import { useAppContext } from '../../hooks/useAppContext'
 export default function Footer() {
   const context = useAppContext()
   const year = new Date().getFullYear()
-  const bgTextClasses = context?.isDark ?
+  const bgTextClasses = context.isDark ?
     'bg-dark-blue text-very-light-gray' :
     'bg-slate-100 text-very-dark-blue-lm'
 

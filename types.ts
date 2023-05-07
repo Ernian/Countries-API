@@ -1,13 +1,14 @@
-export type AppContextType = IContext | null
+import { Dispatch, SetStateAction } from 'react'
 
 export interface IContext {
   isDark: boolean,
-  setIsDark: (isDark: boolean) => void,
+  setIsDark: Dispatch<SetStateAction<boolean>>,
   region: REGIONS,
-  setRegion: (region: REGIONS) => void,
+  setRegion: Dispatch<SetStateAction<REGIONS>>,
   searchQuery: string,
-  setSearchQuery: (searchQuery: string) => void,
+  setSearchQuery: Dispatch<SetStateAction<string>>,
 }
+
 export enum REGIONS {
   ALL = 'All',
   AFR = 'Africa',

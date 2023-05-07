@@ -5,17 +5,17 @@ import { REGIONS } from '../../types'
 
 export default function SearchPanel() {
   const context = useAppContext()
-  const bgTextClasses = context?.isDark ?
+  const bgTextClasses = context.isDark ?
     'bg-dark-blue text-very-light-gray' :
     'bg-slate-100 text-very-dark-blue-lm'
 
   const onChangeRegion = (event: ChangeEvent<HTMLSelectElement>) => {
-    context?.setRegion(event.target.value as REGIONS)
+    context.setRegion(event.target.value as REGIONS)
     event.target.blur()
   }
 
   const onChangeSearchQuery = (event: ChangeEvent<HTMLInputElement>) => {
-    context?.setSearchQuery(event.target.value)
+    context.setSearchQuery(event.target.value)
   }
 
   return (

@@ -3,10 +3,9 @@ import Head from 'next/head'
 import { useState, createContext } from 'react'
 import Header from '../header'
 import Footer from '../footer'
-import { AppContextType } from '../../types'
-import { REGIONS } from '../../types'
+import { IContext, REGIONS } from '../../types'
 
-export const AppContext = createContext<AppContextType>(null)
+export const AppContext = createContext<IContext>({} as IContext)
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState<boolean>(true)

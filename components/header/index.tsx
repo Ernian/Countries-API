@@ -4,8 +4,8 @@ import { SunIcon, MoonIcon } from '../../public/svg'
 
 export default function Header() {
   const context = useAppContext()
-  const changeColorTheme = () => context?.setIsDark(!context?.isDark)
-  const bgTextClasses = context?.isDark ?
+  const changeColorTheme = () => context.setIsDark(!context?.isDark)
+  const bgTextClasses = context.isDark ?
     'bg-dark-blue text-very-light-gray' :
     'bg-slate-100 text-very-dark-blue-lm'
 

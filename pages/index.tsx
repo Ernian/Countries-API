@@ -5,14 +5,14 @@ import { ICountryInfo, REGIONS } from '../types'
 
 export default function Home({ countries }: { countries: ICountryInfo[] }) {
   const context = useAppContext()
-  const bgTextClasses = context?.isDark ?
+  const bgTextClasses = context.isDark ?
     'bg-very-dark-blue-dm text-very-light-gray scrollbar-dm' :
     'bg-slate-200 text-very-dark-blue-lm scrollbar-lm'
 
-  const searchQuery = context?.searchQuery || ''
+  const searchQuery = context.searchQuery || ''
 
   const countryCardList = countries.reduce((countryList, country) => {
-    const filterFlag = context?.region === REGIONS.ALL || country.region === context?.region
+    const filterFlag = context.region === REGIONS.ALL || country.region === context.region
     if (searchQuery) {
       const searchFlag = country.name?.official.toLowerCase().includes(searchQuery.toLowerCase())
       if (searchFlag && filterFlag) {
