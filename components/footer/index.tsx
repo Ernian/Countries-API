@@ -1,15 +1,11 @@
-import { useAppContext } from '../../hooks/useAppContext'
+import { useColorTheme } from '../../hooks/useColorTheme'
 
 export default function Footer() {
-  const context = useAppContext()
   const year = new Date().getFullYear()
-  const bgTextClasses = context.isDark ?
-    'bg-dark-blue text-very-light-gray' :
-    'bg-slate-100 text-very-dark-blue-lm'
 
   return (
     <footer
-      className={`${bgTextClasses} flex flex-col justify-center
+      className={`${useColorTheme()} flex flex-col justify-center
        items-center py-2`}
     >
       <p className='text-base sm:text-xl'>
