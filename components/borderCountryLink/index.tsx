@@ -5,7 +5,7 @@ import { IBorderCountry } from '../../types'
 export default function BorderCountryLink({ country }: { country: IBorderCountry }) {
   const context = useAppContext()
   if (!country.name || !country.ccn3) return null
-  const bgTextClasses = context?.isDark ?
+  const bgTextClasses = context.isDark ?
     'bg-dark-blue text-very-light-gray' :
     'bg-slate-100 text-very-dark-blue-lm'
 

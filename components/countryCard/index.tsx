@@ -5,7 +5,7 @@ import { useAppContext } from '../../hooks/useAppContext'
 
 export default function CountryCard({ country }: { country: ICountryInfo }) {
   const context = useAppContext()
-  const bgTextClasses = context?.isDark ? 'bg-dark-blue text-very-light-gray'
+  const bgTextClasses = context.isDark ? 'bg-dark-blue text-very-light-gray'
     : 'bg-slate-100 text-very-dark-blue-lm'
 
   return (

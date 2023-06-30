@@ -1,13 +1,14 @@
-export type AppContextType = IContext | null
+import { Dispatch, SetStateAction } from 'react'
 
 export interface IContext {
   isDark: boolean,
-  setIsDark: (isDark: boolean) => void,
+  setIsDark: Dispatch<SetStateAction<boolean>>,
   region: REGIONS,
-  setRegion: (region: REGIONS) => void,
+  setRegion: Dispatch<SetStateAction<REGIONS>>,
   searchQuery: string,
-  setSearchQuery: (searchQuery: string) => void,
+  setSearchQuery: Dispatch<SetStateAction<string>>,
 }
+
 export enum REGIONS {
   ALL = 'All',
   AFR = 'Africa',
@@ -15,6 +16,12 @@ export enum REGIONS {
   ASI = 'Asia',
   EUR = 'Europe',
   OCE = 'Oceania'
+}
+
+export enum MODES {
+  COUNTRY_CAPITAL = 'Counatry -> Capital',
+  CAPITAL_COUNTRY = 'Capital -> Counatry',
+  FLAG_COUNTRY = 'Flag -> Counatry',
 }
 
 export interface IBorderCountry {
@@ -53,4 +60,9 @@ export interface ICountryInfo {
   subregion: string | null,
   tld: string[],
   ccn3: string,
+}
+
+export interface IQuestion {
+  answer: ICountryInfo,
+  variants: ICountryInfo[]
 }

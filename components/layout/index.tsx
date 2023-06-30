@@ -1,14 +1,14 @@
 import Head from 'next/head'
 
-import { useState, createContext } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 import Header from '../header'
+import MainTag from '../mainTag'
 import Footer from '../footer'
-import { AppContextType } from '../../types'
-import { REGIONS } from '../../types'
+import { IContext, REGIONS } from '../../types'
 
-export const AppContext = createContext<AppContextType>(null)
+export const AppContext = createContext<IContext>({} as IContext)
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState<boolean>(true)
   const [region, setRegion] = useState<REGIONS>(REGIONS.ALL)
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -31,7 +31,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        {children}
+        <MainTag>
+          {children}
+        </MainTag>
         <Footer />
       </div>
     </AppContext.Provider>
