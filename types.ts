@@ -18,6 +18,12 @@ export enum REGIONS {
   OCE = 'Oceania'
 }
 
+export enum MODES {
+  COUNTRY_CAPITAL = 'Counatry -> Capital',
+  CAPITAL_COUNTRY = 'Capital -> Counatry',
+  FLAG_COUNTRY = 'Flag -> Counatry',
+}
+
 export interface IBorderCountry {
   name: string,
   ccn3: string,
@@ -54,4 +60,9 @@ export interface ICountryInfo {
   subregion: string | null,
   tld: string[],
   ccn3: string,
+}
+
+export interface IQuestion {
+  answer: ICountryInfo,
+  variants: ICountryInfo[]
 }

@@ -3,22 +3,22 @@ import { useAppContext } from '../../hooks/useAppContext'
 import { REGIONS } from '../../types'
 
 export default function SelectRegion({ bgTextClasses }: { bgTextClasses: string }) {
-  const context = useAppContext()
+  const { region, setRegion } = useAppContext()
   const onChangeRegion = (event: ChangeEvent<HTMLSelectElement>) => {
-    context.setRegion(event.target.value as REGIONS)
+    setRegion(event.target.value as REGIONS)
     event.target.blur()
   }
 
   return (
-    <div className={`${bgTextClasses} mt-4 md:mt-0 w-36 p-2 md:p-3
+    <div className={`${bgTextClasses} w-36 p-2 md:p-3
   rounded-md md:rounded-lg `}>
       <select
         name='regions'
-        value={context.region}
+        value={region}
         className={`${bgTextClasses} outline-none`}
         onChange={onChangeRegion}
       >
-        <option value={REGIONS.ALL}>Filter by Region</option>
+        <option value={REGIONS.ALL}>All regions</option>
         <option value={REGIONS.AFR}>Africa</option>
         <option value={REGIONS.AMR}>America</option>
         <option value={REGIONS.ASI}>Asia</option>

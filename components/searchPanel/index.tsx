@@ -17,7 +17,7 @@ export default function SearchPanel() {
       <div className={`max-w-7xl mx-auto text-slate-900 flex flex-col
        md:flex-row  md:justify-between`}>
         <div className={`${bgTextClasses} flex justify-between 
-        items-center w-4/5 md:w-96 p-2 md:p-3 rounded-md md:rounded-lg`}>
+        items-center w-4/5 md:w-96 p-2 md:p-3 rounded-md md:rounded-lg mb-4 md:mb-0`}>
           <input
             type='search'
             className={`${bgTextClasses} outline-none inline-block w-11/12 md:w-11/12`}
