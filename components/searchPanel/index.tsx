@@ -1,15 +1,16 @@
 import { ChangeEvent } from 'react'
 import { useAppContext } from '../../hooks/useAppContext'
 import { useColorTheme } from '../../hooks/useColorTheme'
+import { setSearchQueryAction } from '../../context/actions'
 import SelectRegion from '../selectRegion'
 import SearchIcon from '../searchIcon'
 
 export default function SearchPanel() {
-  const context = useAppContext()
+  const [state, dispatch] = useAppContext()
   const bgTextClasses = useColorTheme()
 
   const onChangeSearchQuery = (event: ChangeEvent<HTMLInputElement>) => {
-    context.setSearchQuery(event.target.value)
+    dispatch(setSearchQueryAction(event.target.value))
   }
 
   return (
@@ -22,7 +23,7 @@ export default function SearchPanel() {
             type='search'
             className={`${bgTextClasses} outline-none inline-block w-11/12 md:w-11/12`}
             placeholder='Search for a country'
-            value={context.searchQuery}
+            value={state.searchQuery}
             onChange={onChangeSearchQuery}
           />
           <SearchIcon />

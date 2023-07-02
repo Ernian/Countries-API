@@ -5,7 +5,7 @@ import { useAppContext } from '../../hooks/useAppContext'
 import { ICountryInfo } from '../../types'
 
 export default function CountryPage({ country }: { country: ICountryInfo }) {
-  const context = useAppContext()
+  const [context] = useAppContext()
 
   const bgTextClasses = context?.isDark ?
     'bg-very-dark-blue-dm text-very-light-gray' :

@@ -1,13 +1,10 @@
 import Link from 'next/link'
-import { useAppContext } from '../../hooks/useAppContext'
+import { useColorTheme } from '../../hooks/useColorTheme'
 import { IBorderCountry } from '../../types'
 
 export default function BorderCountryLink({ country }: { country: IBorderCountry }) {
-  const context = useAppContext()
+  const bgTextClasses = useColorTheme()
   if (!country.name || !country.ccn3) return null
-  const bgTextClasses = context.isDark ?
-    'bg-dark-blue text-very-light-gray' :
-    'bg-slate-100 text-very-dark-blue-lm'
 
   return (
     <Link

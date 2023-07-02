@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { useAppContext } from '../../hooks/useAppContext'
+import { changeThemeAction } from '../../context/actions'
 import { useColorTheme } from '../../hooks/useColorTheme'
 import { SunIcon, MoonIcon } from '../../public/svg'
 import QuizLink from '../quizLink'
 
 export default function Header() {
-  const context = useAppContext()
-  const changeColorTheme = () => context.setIsDark(!context.isDark)
+  const [state, dispatch] = useAppContext()
+  const changeColorTheme = () => dispatch(changeThemeAction())
 
   return (
     <header className={`${useColorTheme()} p-3 sm:pl-5 sm:pr-9`}>
@@ -20,9 +21,9 @@ export default function Header() {
           hover:cursor-pointer hover:font-semibold`}
           onClick={changeColorTheme}
         >
-          {context.isDark ? <SunIcon /> : <MoonIcon />}
+          {state.isDark ? <SunIcon /> : <MoonIcon />}
           <span className='inline-block ml-3'>
-            {context.isDark ? 'Light Mode' : 'Dark Mode'}
+            {state.isDark ? 'Light Mode' : 'Dark Mode'}
           </span>
         </div>
       </div>

@@ -1,28 +1,14 @@
 import Head from 'next/head'
 
-import { createContext, ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
+import { AppProvider } from '../../context'
 import Header from '../header'
 import MainTag from '../mainTag'
 import Footer from '../footer'
-import { IContext, REGIONS } from '../../types'
 
-export const AppContext = createContext<IContext>({} as IContext)
-
-export default function Layout({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState<boolean>(true)
-  const [region, setRegion] = useState<REGIONS>(REGIONS.ALL)
-  const [searchQuery, setSearchQuery] = useState<string>('')
-  const context = {
-    isDark,
-    setIsDark,
-    region,
-    setRegion,
-    searchQuery,
-    setSearchQuery
-  }
-
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <AppContext.Provider value={context}>
+    <AppProvider>
       <div className='flex flex-col h-screen'>
         <Head>
           <title>Countries api</title>
@@ -36,6 +22,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         </MainTag>
         <Footer />
       </div>
-    </AppContext.Provider>
+    </AppProvider>
   )
 }
+
+export default Layout

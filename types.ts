@@ -1,12 +1,7 @@
-import { Dispatch, SetStateAction } from 'react'
-
-export interface IContext {
+export interface IState {
   isDark: boolean,
-  setIsDark: Dispatch<SetStateAction<boolean>>,
   region: REGIONS,
-  setRegion: Dispatch<SetStateAction<REGIONS>>,
   searchQuery: string,
-  setSearchQuery: Dispatch<SetStateAction<string>>,
 }
 
 export enum REGIONS {
@@ -65,4 +60,11 @@ export interface ICountryInfo {
 export interface IQuestion {
   answer: ICountryInfo,
   variants: ICountryInfo[]
+}
+
+export type ActionType = 'CHANGE_COLOR_THEME' | 'SET_REGION' | 'SET_SEARCH_QUERY'
+
+export interface IAction {
+  type: ActionType,
+  payload: string
 }

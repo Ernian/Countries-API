@@ -1,15 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ICountryInfo } from '../../types'
-import { useAppContext } from '../../hooks/useAppContext'
+import { useColorTheme } from '../../hooks/useColorTheme'
 
 export default function CountryCard({ country }: { country: ICountryInfo }) {
-  const context = useAppContext()
-  const bgTextClasses = context.isDark ? 'bg-dark-blue text-very-light-gray'
-    : 'bg-slate-100 text-very-dark-blue-lm'
-
   return (
-    <section className={`${bgTextClasses} relative m-3 w-2/3 sm:w-2/5 md:w-72 flex flex-col 
+    <section className={`${useColorTheme()} relative m-3 w-2/3 sm:w-2/5 md:w-72 flex flex-col 
     justify-between items-center rounded-lg overflow-hidden`}>
       {(country.flags && country.name) &&
         <div className='w-full h-40 relative'>

@@ -4,11 +4,11 @@ import CountryCard from '../components/countryCard'
 import { ICountryInfo, REGIONS } from '../types'
 
 export default function Home({ countries }: { countries: ICountryInfo[] }) {
-  const context = useAppContext()
-  const searchQuery = context.searchQuery || ''
+  const [state] = useAppContext()
+  const searchQuery = state.searchQuery || ''
 
   const countryCardList = countries.reduce((countryList, country) => {
-    const filterFlag = context.region === REGIONS.ALL || country.region === context.region
+    const filterFlag = state.region === REGIONS.ALL || country.region === state.region
     if (searchQuery) {
       const searchFlag = country.name?.official.toLowerCase().includes(searchQuery.toLowerCase())
       if (searchFlag && filterFlag) {

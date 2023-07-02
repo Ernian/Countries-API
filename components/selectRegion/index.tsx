@@ -1,11 +1,12 @@
 import { ChangeEvent } from 'react'
 import { useAppContext } from '../../hooks/useAppContext'
+import { setRegionAction } from '../../context/actions'
 import { REGIONS } from '../../types'
 
 export default function SelectRegion({ bgTextClasses }: { bgTextClasses: string }) {
-  const { region, setRegion } = useAppContext()
+  const [state, dispatch] = useAppContext()
   const onChangeRegion = (event: ChangeEvent<HTMLSelectElement>) => {
-    setRegion(event.target.value as REGIONS)
+    dispatch(setRegionAction(event.target.value as REGIONS))
     event.target.blur()
   }
 
@@ -14,7 +15,7 @@ export default function SelectRegion({ bgTextClasses }: { bgTextClasses: string 
   rounded-md md:rounded-lg `}>
       <select
         name='regions'
-        value={region}
+        value={state.region}
         className={`${bgTextClasses} outline-none`}
         onChange={onChangeRegion}
       >

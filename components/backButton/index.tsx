@@ -3,12 +3,12 @@ import { useAppContext } from '../../hooks/useAppContext'
 
 export default function BackButton() {
   const { back } = useRouter()
-  const context = useAppContext()
-  const bgTextClasses = context.isDark ?
+  const [state] = useAppContext()
+  const bgTextClasses = state.isDark ?
     'bg-dark-blue text-very-light-gray' :
     'bg-slate-100 text-very-dark-blue-lm'
 
-  const iconColor = context.isDark ? '#f2f2f2' : '#111517'
+  const iconColor = state.isDark ? '#f2f2f2' : '#111517'
 
   return (
     <button

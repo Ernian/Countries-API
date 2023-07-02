@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useAppContext } from '../../hooks/useAppContext'
 
 export default function QuizLink() {
-	const context = useAppContext()
-	const color = context.isDark ? '#f2f2f2' : '#111517'
+	const [state] = useAppContext()
+	const color = state.isDark ? '#f2f2f2' : '#111517'
 
 	return (
 		<Link href='/quiz' className='flex items-center'>

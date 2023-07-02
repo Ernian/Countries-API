@@ -1,4 +1,4 @@
 import { useContext } from 'react'
-import { AppContext } from '../components/layout'
+import { AppContext } from '../context'
 
 export const useAppContext = () => useContext(AppContext)

@@ -12,7 +12,7 @@ export default function Quiz() {
   const [mode, setMode] = useState<MODES>(MODES.COUNTRY_CAPITAL)
   const [question, setQuestion] = useState<IQuestion>({} as IQuestion)
 
-  const { region } = useAppContext()
+  const [state] = useAppContext()
   const bgTextClasses = useColorTheme()
 
   const url = 'https://restcountries.com/v3.1/all'
@@ -22,14 +22,14 @@ export default function Quiz() {
 
   useEffect(() => {
     getNewQuestion()
-  }, [mode, region, data])
+  }, [mode, state.region, data])
 
 
   const getRandomIndex = (length: number) => Math.floor(Math.random() * length)
   const shuffleArray = (arr: Array<ICountryInfo>) => arr.sort(() => Math.random() - 0.5)
   const getNewQuestion = () => {
-    const filteredCountries = data && region !== REGIONS.ALL ?
-      data.filter(country => country.region === region) :
+    const filteredCountries = data && state.region !== REGIONS.ALL ?
+      data.filter(country => country.region === state.region) :
       data || [] as ICountryInfo[]
 
     if (!filteredCountries.length) return

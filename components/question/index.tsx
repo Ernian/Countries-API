@@ -64,7 +64,7 @@ const Question = ({ question, mode, getNewQuestion }:
         {
           question.variants.map(country => (
             <Answer
-              key={country.ccn3}
+              key={country.ccn3 + country.name?.official}
               country={country}
               mode={mode}
               classes={classes}
